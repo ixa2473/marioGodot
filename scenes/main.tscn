@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=3 uid="uid://b02n4cj8r81ha"]
+
+[ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://Assets Super Mario Bros/Sprites/GroundBlock.png" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://Assets Super Mario Bros/Sprites/HardBlock.png" id="2_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://dbhkvad8kmca" path="res://Assets Super Mario Bros/Sprites/UndergroundBlock.png" id="3_tefeu"]
+[ext_resource type="Texture2D" uid="uid://dtkrgfs1x5qrr" path="res://Assets Super Mario Bros/Sprites/UndergroundBrick.png" id="4_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://1ufgjms3q8u0" path="res://scenes/player.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dykbpwueio33m" path="res://scenes/goomba.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://78hprhxxiuff" path="res://scenes/koopa.tscn" id="7_tipki"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tipki"]
+texture = ExtResource("1_jyhfs")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85g3d"]
+texture = ExtResource("2_tbgi4")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_choun"]
+texture = ExtResource("3_tefeu")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ya4ey"]
+texture = ExtResource("4_o6xl0")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_eb6dy"]
+physics_layer_0/collision_layer = 2
+sources/0 = SubResource("TileSetAtlasSource_tipki")
+sources/1 = SubResource("TileSetAtlasSource_85g3d")
+sources/2 = SubResource("TileSetAtlasSource_choun")
+sources/3 = SubResource("TileSetAtlasSource_ya4ey")
+
+[node name="Main" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.75, 2.75)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_eb6dy")
+format = 2
+layer_0/tile_data = PackedInt32Array(131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 262152, 0, 0, 262153, 0, 0, 262146, 0, 0, 458743, 0, 0, 327689, 0, 0, 131063, 0, 0, -65547, 0, 0, -131079, 0, 0, -131074, 0, 0, -262140, 0, 0, -262141, 0, 0, -327674, 0, 0, -327673, 0, 0, -327671, 0, 0, -327670, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_tbgi4")]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Goomba" parent="Enemies" instance=ExtResource("6_o6xl0")]
+position = Vector2(86, 12)
+
+[node name="Koopa" parent="Enemies" instance=ExtResource("7_tipki")]
+position = Vector2(46, -2)

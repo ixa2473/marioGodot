@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://78hprhxxiuff"]
+
+[ext_resource type="Script" uid="uid://cdqxx6knucn8c" path="res://scenes/enemy.gd" id="1_k1qtu"]
+[ext_resource type="Texture2D" uid="uid://d0n6srd2hrk0i" path="res://Assets Super Mario Bros/Sprites/Koopa_Shell.png" id="1_py2lt"]
+[ext_resource type="Texture2D" uid="uid://rq2r08kewwlo" path="res://Assets Super Mario Bros/Sprites/Koopa_Walk1.png" id="2_k1qtu"]
+[ext_resource type="Texture2D" uid="uid://b2q1ddi7o0ef" path="res://Assets Super Mario Bros/Sprites/Koopa_Walk2.png" id="3_xum81"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grttc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_py2lt")
+}],
+"loop": true,
+"name": &"dieAN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k1qtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xum81")
+}],
+"loop": true,
+"name": &"walkAN",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo5xu"]
+size = Vector2(20, 14)
+
+[node name="Koopa" type="Area2D"]
+script = ExtResource("1_k1qtu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_grttc")
+animation = &"dieAN"
+autoplay = "walkAN"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vo5xu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 12)
+collision_mask = 18
