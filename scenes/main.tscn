@@ -46,11 +46,16 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 262152, 0, 0, 262153, 0, 0, 262146, 0, 0, 458743, 0, 0, 327689, 0, 0, 131063, 0, 0, -65547, 0, 0, -131079, 0, 0, -131074, 0, 0, -262140, 0, 0, -262141, 0, 0, -327674, 0, 0, -327673, 0, 0, -327671, 0, 0, -327670, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_tbgi4")]
+collision_mask = 6
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Goomba" parent="Enemies" instance=ExtResource("6_o6xl0")]
 position = Vector2(86, 12)
+hSpeed = null
+vSpeed = null
 
 [node name="Koopa" parent="Enemies" instance=ExtResource("7_tipki")]
 position = Vector2(46, -2)
+hSpeed = null
+vSpeed = null

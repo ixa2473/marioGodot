@@ -4,11 +4,39 @@ class_name Enemy
 
 @export var hSpeed = 20
 @export var vSpeed = 100
+
+
 @onready var rayCast2d: RayCast2D = $RayCast2D
+@onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 func _process(delta):
 	position.x -= hSpeed * delta
 	
 	if !rayCast2d.is_colliding():
 		position.y += vSpeed * delta
-		#
+
+func die():
+	hSpeed = 0
+	vSpeed = 0
+	animatedSprite2d.play("die")
+
+func dieFromHit():
+	set_collision_layer_value(3, false)
+	set_collision_mask_value(3,false)
+	
+	rotation_degrees = 180
+	hSpeed = 0
+	vSpeed = 0
+	
+	var dieTween = get_tree().create_tween()
+	dieTween.tween_property(self, "position", position + Vector2(0,-25), .2)
+	dieTween.chain().tween_property(self, "position", position + Vector2(0,500), 4)
+
+
+func _on_area_entered(area):
+	if area is Koopa and (area as Koopa).inAShell and (area as Koopa).hSpeed != 0:
+		dieFromHit()
+
+func _on_visible_on_screen_notifier_2d.screen_exited():
+	queue_free()

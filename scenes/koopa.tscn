@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://78hprhxxiuff"]
 
-[ext_resource type="Script" uid="uid://cdqxx6knucn8c" path="res://scenes/enemy.gd" id="1_k1qtu"]
+[ext_resource type="Script" uid="uid://cel8lllinru8f" path="res://scenes/koopa.gd" id="1_k1qtu"]
 [ext_resource type="Texture2D" uid="uid://d0n6srd2hrk0i" path="res://Assets Super Mario Bros/Sprites/Koopa_Shell.png" id="1_py2lt"]
 [ext_resource type="Texture2D" uid="uid://rq2r08kewwlo" path="res://Assets Super Mario Bros/Sprites/Koopa_Walk1.png" id="2_k1qtu"]
 [ext_resource type="Texture2D" uid="uid://b2q1ddi7o0ef" path="res://Assets Super Mario Bros/Sprites/Koopa_Walk2.png" id="3_xum81"]
@@ -31,7 +31,11 @@ animations = [{
 size = Vector2(20, 14)
 
 [node name="Koopa" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_k1qtu")
+hSpeed = null
+vSpeed = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_grttc")
@@ -44,3 +48,5 @@ shape = SubResource("RectangleShape2D_vo5xu")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 12)
 collision_mask = 18
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

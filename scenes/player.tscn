@@ -281,6 +281,7 @@ animation = &"smallIdleAN"
 script = ExtResource("25_4gjji")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 6
 
 [node name="Area_CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -0.1875)
