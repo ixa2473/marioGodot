@@ -11,3 +11,4 @@ func _process(delta):
 	
 	if !rayCast2d.is_colliding():
 		position.y += vSpeed * delta
+		#
