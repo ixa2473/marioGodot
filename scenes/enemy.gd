@@ -2,9 +2,8 @@ extends Area2D
 
 class_name Enemy
 
-@export var hSpeed = 20
-@export var vSpeed = 100
-
+@onready var hSpeed = 20
+@onready var vSpeed = 100
 
 @onready var rayCast2d: RayCast2D = $RayCast2D
 @onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -38,5 +37,5 @@ func _on_area_entered(area):
 	if area is Koopa and (area as Koopa).inAShell and (area as Koopa).hSpeed != 0:
 		dieFromHit()
 
-func _on_visible_on_screen_notifier_2d.screen_exited():
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

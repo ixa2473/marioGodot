@@ -10,10 +10,15 @@ enum PlayerMode { SMALL, BIG, SHOOTING }
 @onready var areaCollisionShape2d: CollisionShape2D = $Area2D/Area_CollisionShape2D
 @onready var playerCollisionShape2d: CollisionShape2D = $Player_CollisionShape2D
 
-@export_group("mov")
-@export var run_damping = 1
-@export var speed = 100
-@export var jump_speed = -300
+#@export_group("mov")
+@onready var run_damping = 1
+@onready var speed = 100
+@onready var jump_speed = -300
+
+@export_group("stomping enemeieszsz")
+@export var minStompDeg = 35
+@export var maxStompDeg = 145
+@export var stompYSpeed = -150
 
 var player_mode = PlayerMode.SMALL
 
@@ -44,3 +49,24 @@ func _physics_process(delta: float) -> void:
 	animatedSprite2d.triggerAnimation(velocity, direction, player_mode)
 	
 	move_and_slide()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is Enemy:
+		handleEnemyCollision(area)
+
+func handleEnemyCollision(enemy: Enemy):
+	if enemy == null:
+		return
+	
+	if is_instance_of(enemy, Koopa) and (enemy as Koopa).inAShell:
+		(enemy as Koopa).onStomp(global_position)
+	else:
+		var collisionAngle = rad_to_deg(position.angle_to_point(enemy.position))
+		
+		if collisionAngle > minStompDeg && maxStompDeg > collisionAngle:
+			enemy.die()
+			onEnemyStomped()
+
+func onEnemyStomped():
+	velocity.y = stompYSpeed
