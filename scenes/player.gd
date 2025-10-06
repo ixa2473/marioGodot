@@ -15,10 +15,10 @@ enum PlayerMode { SMALL, BIG, SHOOTING }
 @onready var speed = 100
 @onready var jump_speed = -300
 
-@export_group("stomping enemeieszsz")
-@export var minStompDeg = 35
-@export var maxStompDeg = 145
-@export var stompYSpeed = -150
+#@export_group("stomping enemeieszsz")
+@onready var minStompDeg = 35
+@onready var maxStompDeg = 145
+@onready var stompYSpeed = -150
 
 var player_mode = PlayerMode.SMALL
 

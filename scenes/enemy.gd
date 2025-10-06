@@ -18,7 +18,7 @@ func _process(delta):
 func die():
 	hSpeed = 0
 	vSpeed = 0
-	animatedSprite2d.play("die")
+	animatedSprite2d.play("dieAN")
 
 func dieFromHit():
 	set_collision_layer_value(3, false)

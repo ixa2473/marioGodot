@@ -52,10 +52,12 @@ collision_mask = 6
 
 [node name="Goomba" parent="Enemies" instance=ExtResource("6_o6xl0")]
 position = Vector2(86, 12)
-hSpeed = null
-vSpeed = null
+
+[node name="Goomba2" parent="Enemies" instance=ExtResource("6_o6xl0")]
+position = Vector2(136, -20)
 
 [node name="Koopa" parent="Enemies" instance=ExtResource("7_tipki")]
 position = Vector2(46, -2)
-hSpeed = null
-vSpeed = null
+
+[node name="Koopa2" parent="Enemies" instance=ExtResource("7_tipki")]
+position = Vector2(70, -80)
