@@ -13,20 +13,21 @@ const pointsLabelScene = preload("res://scenes/points_label.tscn")
 @onready var animatedSprite2d = $AnimatedSprite2D as PlayerAnimatedSprite
 @onready var areaCollisionShape2d: CollisionShape2D = $Area2D/Area_CollisionShape2D
 @onready var playerCollisionShape2d: CollisionShape2D = $Player_CollisionShape2D
+@onready var area2d: Area2D = $Area2D
 
-#@export_group("mov")
+#movement
 @onready var run_damping = 1
 @onready var speed = 100
 @onready var jump_speed = -300
 
-#@export_group("stomping enemeieszsz")
+#stomping enemeies
 @onready var minStompDeg = 35
 @onready var maxStompDeg = 145
 @onready var stompYSpeed = -150
 
 var player_mode = PlayerMode.SMALL
-
 var doubleJump
+var isDead = false
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -60,7 +61,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		handleEnemyCollision(area)
 
 func handleEnemyCollision(enemy: Enemy):
-	if enemy == null:
+	if enemy == null || isDead:
 		return
 	
 	if is_instance_of(enemy, Koopa) and (enemy as Koopa).inAShell:
@@ -72,6 +73,19 @@ func handleEnemyCollision(enemy: Enemy):
 			enemy.die()
 			onEnemyStomped()
 			spawnPointsLabel(enemy)
+		else: 
+			die()
+
+func die():
+	if player_mode == PlayerMode.SMALL:
+		isDead == true
+		animatedSprite2d.play("smallDeathAN")
+		set_physics_process(false)
+		
+		var dT = get_tree().create_tween()
+		dT.tween_property(self, "position", position + Vector2(0, 48), .5)
+		dT.chain().tween_property(self, "position", position + Vector2(0, 256), 1)
+		dT.tween_callback(func(): get_tree().reload_current_scene())
 
 func onEnemyStomped():
 	velocity.y = stompYSpeed
