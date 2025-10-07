@@ -1,1 +1,1 @@
-Slide VI ainda não finalizado
+Slide VI finalizado
