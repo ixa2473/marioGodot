@@ -2,6 +2,9 @@ extends Area2D
 
 class_name Enemy
 
+const pointsLabelScene = preload("res://scenes/points_label.tscn")
+
+
 @onready var hSpeed = 20
 @onready var vSpeed = 100
 
@@ -31,6 +34,10 @@ func dieFromHit():
 	var dieTween = get_tree().create_tween()
 	dieTween.tween_property(self, "position", position + Vector2(0,-25), .2)
 	dieTween.chain().tween_property(self, "position", position + Vector2(0,500), 4)
+	
+	var pL = pointsLabelScene.instantiate()
+	pL.position = self.position + Vector2(-20, -20)
+	get_tree().root.add_child(pL)
 
 
 func _on_area_entered(area):

@@ -6,6 +6,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 enum PlayerMode { SMALL, BIG, SHOOTING }
 
+signal pointsScored(points: int)
+
+const pointsLabelScene = preload("res://scenes/points_label.tscn")
+
 @onready var animatedSprite2d = $AnimatedSprite2D as PlayerAnimatedSprite
 @onready var areaCollisionShape2d: CollisionShape2D = $Area2D/Area_CollisionShape2D
 @onready var playerCollisionShape2d: CollisionShape2D = $Player_CollisionShape2D
@@ -67,6 +71,13 @@ func handleEnemyCollision(enemy: Enemy):
 		if collisionAngle > minStompDeg && maxStompDeg > collisionAngle:
 			enemy.die()
 			onEnemyStomped()
+			spawnPointsLabel(enemy)
 
 func onEnemyStomped():
 	velocity.y = stompYSpeed
+
+func spawnPointsLabel(enemy):
+	var pL = pointsLabelScene.instantiate()
+	pL.position = enemy.position + Vector2(-20, -20)
+	get_tree().root.add_child(pL)
+	pointsScored.emit(100)

@@ -1,5 +1,18 @@
-[gd_scene format=3 uid="uid://dg762sulp4kcv"]
+[gd_scene load_steps=3 format=3 uid="uid://dg762sulp4kcv"]
+
+[ext_resource type="FontFile" uid="uid://dm3ch1vmt4ixr" path="res://Assets Super Mario Bros/Fonts/font.ttf" id="1_x7gun"]
+[ext_resource type="Script" uid="uid://cbd03o73qnno5" path="res://scenes/points_label.gd" id="2_svprb"]
 
 [node name="PointsLabel" type="Label"]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(1.353256, 1.353256, 1.353256, 1)
+theme_override_colors/font_shadow_color = Color(0.28, 0, 0.12599994, 0.6431373)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("1_x7gun")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_svprb")
